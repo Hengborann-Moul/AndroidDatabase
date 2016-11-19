@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Android Database</string>
+
+    <!--New String-->
+    <string name="header">Student Details</string>
+    <string name="rollno">Enter Rollno: </string>
+    <string name="name">Enter Name: </string>
+    <string name="mark">Enter Marks: </string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="modify">Modify</string>
+    <string name="view">View</string>
+    <string name="viewall">View All</string>
+    <string name="about">About</string>
+
 </resources>
