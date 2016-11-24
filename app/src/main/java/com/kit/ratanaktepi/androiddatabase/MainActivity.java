@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,8 +59,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
                 return;
             }
             // Inserting record
-            database.execSQL("INSERT INTO student VALUES('" + rollno.getText() + "','" + name.getText() +
-                    "','" + mark.getText() + "');");
+            database.execSQL("INSERT INTO student VALUES('" + rollno.getText() + "','" + name.getText() + "','" + mark.getText() + "');");
             showMessage("Success", "Record added");
             clearText();
         }
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
             Cursor c = database.rawQuery("SELECT * FROM student WHERE rollno='" + rollno.getText() + "'", null);
             if (c.moveToFirst()) {
                 // Displaying record if found
+                Log.d("Main", c.getString(0));
                 name.setText(c.getString(1));
                 mark.setText(c.getString(2));
             } else {
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
                 clearText();
             }
         }
-    // Viewing all records
+        // Viewing all records
         if (v == viewall) {
             // Retrieving all records
             Cursor c = database.rawQuery("SELECT * FROM student", null);
@@ -137,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
             // Displaying all records
             showMessage("Student Details", buffer.toString());
         }
-    // Displaying info
+        // Displaying info
         if (v == about) {
-            showMessage("Student Management Application", "Developed By Azim");
+            showMessage("Student Management Application", "Developed By Ratanaktepi Chhor");
         }
     }
 
