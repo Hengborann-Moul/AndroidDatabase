@@ -6,13 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText rollno, name, mark;
     Button add, delete, modify, view, viewall, about;
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
 
         database = openOrCreateDatabase("StudentDB", Context.MODE_PRIVATE, null);
         database.execSQL("CREATE TABLE IF NOT EXISTS student(rollno VARCHAR,name VARCHAR,marks VARCHAR);");
-
 
     }
 
@@ -92,8 +90,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnClic
             Cursor c = database.rawQuery("SELECT * FROM student WHERE rollno='" + rollno.getText() + "'", null);
             if (c.moveToFirst()) {
                 // Modifying record if found
-                database.execSQL("UPDATE student SET name='" + name.getText() + "',marks='" + mark.getText() +
-                        "' WHERE rollno='" + rollno.getText() + "'");
+                database.execSQL("UPDATE student SET name='" + name.getText() + "',marks='" + mark.getText() + "' WHERE rollno='" + rollno.getText() + "'");
                 showMessage("Success", "Record Modified");
             } else {
                 showMessage("Error", "Invalid Rollno");
